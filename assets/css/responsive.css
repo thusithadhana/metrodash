@@ -1,0 +1,627 @@
+/* ==========================================================================
+   METROPOLITAN MANAGEMENT INTELLIGENCE - DASHBOARD WEB APPLICATION
+   Responsive Layout & Precision Grid Systems: Smartboard, Desktop, Tablet, Mobile
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Master Panel Grids with Precision Alignment & Equal Stretching
+   -------------------------------------------------------------------------- */
+.panel-grid-2col {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 16px;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.panel-grid-equal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.panel-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.panel-grid-4cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 14px;
+  height: 100%;
+  min-height: 0;
+}
+
+.panel-grid-3mini-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  min-height: 0;
+}
+
+.panel-grid-3mini-cards .kpi-card {
+  padding: 10px 12px;
+}
+
+.panel-grid-3mini-cards .kpi-main-value {
+  font-size: 22px;
+}
+
+.panel-grid-3mini-cards .kpi-card-title {
+  font-size: 10.5px;
+}
+
+.panel-grid-2cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  min-height: 0;
+}
+
+.panel-grid-2cards .kpi-card {
+  padding: 11px 14px;
+}
+
+.panel-grid-2cards .kpi-main-value {
+  font-size: 22px;
+}
+
+.panel-grid-2cards .kpi-card-title {
+  font-size: 11px;
+}
+
+.panel-col-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  min-height: 0;
+}
+
+.panel-col-stack>* {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Stacking overrides for complex multi-tier dashboards (e.g. Page 5 Panel 3) */
+.panel-col-stack>.panel-grid-4cards {
+  height: auto;
+  flex: 0 0 auto;
+  grid-template-rows: auto;
+}
+
+.panel-col-stack>.panel-grid-2col {
+  flex: 1;
+  height: auto;
+  min-height: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Smartboard & Ultra-Wide 4K Kiosks (Min-width: 1600px)
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 1600px) {
+  .colorful-sidebar {
+    width: 70px;
+    min-width: 70px;
+  }
+
+  .colorful-top-header {
+    height: 54px;
+  }
+
+  .header-search-box {
+    width: 260px;
+  }
+
+  .kpi-big-number {
+    font-size: 26px;
+  }
+
+  .highlight-big-metric {
+    font-size: 26px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Medium Desktops & Compact Laptops (992px to 1439px)
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 992px) and (max-width: 1439px) {
+  .colorful-sidebar {
+    width: 70px;
+    min-width: 70px;
+    padding: 14px 6px;
+  }
+
+  .header-search-box {
+    width: 180px;
+  }
+
+  .kpi-big-number {
+    font-size: 22px;
+  }
+
+  .vibrant-kpi-card {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .kpi-icon-circle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .highlight-big-metric {
+    font-size: 22px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tablet & Compact Devices (768px to 991px)
+   Sliding Drawer Sidebar & Clean Vertical Stacking
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 991px) {
+  html, body {
+    overflow-x: hidden;
+    height: auto;
+    min-height: 100%;
+  }
+
+  #app,
+  .colorful-app-layout {
+    display: block !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    position: relative;
+    background: var(--bg-canvas) !important;
+  }
+
+  /* 1. Off-Canvas Left Navigation Drawer */
+  .colorful-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 250px !important;
+    max-width: 82vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 1050 !important;
+    transform: translateX(-105%) !important;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 8px 0 32px rgba(108, 82, 238, 0.35) !important;
+    overflow-y: auto !important;
+    background: var(--sidebar-bg) !important;
+    padding: 20px 14px !important;
+  }
+
+  .colorful-sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  .sidebar-logo-card {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    padding: 0 10px !important;
+    gap: 10px !important;
+  }
+
+  .sidebar-nav-card {
+    width: 100% !important;
+  }
+
+  .sidebar-nav-list {
+    width: 100% !important;
+  }
+
+  .sidebar-nav-item {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    padding: 10px 14px !important;
+    gap: 12px !important;
+  }
+
+  .sidebar-nav-item span {
+    display: inline-block !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+  }
+
+  .sidebar-bottom-cluster {
+    width: 100% !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    padding: 0 10px !important;
+  }
+
+  /* Dimmed Backdrop for Mobile/Tablet Drawer */
+  .sidebar-backdrop {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(15, 23, 42, 0.55) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    z-index: 1040 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  .sidebar-backdrop.active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Mobile/Tablet Menu Button */
+  .mobile-menu-toggle-btn {
+    display: flex !important;
+  }
+
+  /* 2. Main Content Wrapper */
+  .colorful-main-wrapper {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    padding: 12px 14px 76px 14px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    background: var(--bg-canvas) !important;
+  }
+
+  .colorful-top-header {
+    height: 50px;
+    padding: 0 4px;
+    margin-bottom: 12px;
+  }
+
+  .dashboard-viewport {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  .panel-container {
+    height: auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* 3. Vibrant 3-Row Dashboard Layout on Tablets */
+  .vibrant-page-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 14px !important;
+    overflow: visible !important;
+  }
+
+  .kpi-gradient-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .vibrant-mid-row {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .vibrant-bottom-row {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .order-status-table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  /* 4. Bottom Floating Navigation Dock Pinned */
+  .executive-floating-dock {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 100 !important;
+    box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Phones (< 768px)
+   Full Fluid Single Column Flow, Touch Targets & Scaled Charts
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 767px) {
+  html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  #app {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .colorful-app-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .colorful-main-wrapper {
+    padding: 8px 10px 72px 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Compact Top Header Bar */
+  .colorful-top-header {
+    height: 46px !important;
+    padding: 0 8px !important;
+    border-radius: 10px !important;
+    margin-bottom: 10px !important;
+    gap: 6px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    justify-content: space-between !important;
+  }
+
+  .header-left-group {
+    gap: 6px !important;
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+
+  .mobile-menu-toggle-btn {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .header-search-box {
+    display: none !important;
+  }
+
+  .header-main-title {
+    font-size: 14.5px !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 210px !important;
+    letter-spacing: -0.2px !important;
+  }
+
+  .clean-clock-badge,
+  .clean-date-badge {
+    display: none !important;
+  }
+
+  #btnSlideGrid,
+  #btnFullscreen {
+    display: none !important;
+  }
+
+  /* Clean compact status badge with status dot */
+  .clean-sync-badge {
+    padding: 6px !important;
+    border-radius: 50% !important;
+    gap: 0 !important;
+    width: 24px !important;
+    height: 24px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .clean-badge-text {
+    display: none !important;
+  }
+
+  .clean-static-dot {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  .clean-header-btn {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 6px !important;
+  }
+
+  .clean-header-btn svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  /* Vibrant Colorful Dashboard Mobile Adaptations */
+  .vibrant-page-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .kpi-gradient-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .vibrant-kpi-card {
+    padding: 12px 14px !important;
+    border-radius: 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .vibrant-mid-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .vibrant-bottom-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .vibrant-white-card {
+    padding: 14px 14px !important;
+    border-radius: 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .overview-chart-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .overview-slicers-group {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .overview-highlight-banner {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .earnings-ministats-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .order-status-toolbar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .toolbar-left-group {
+    width: 100% !important;
+  }
+
+  .toolbar-right-group {
+    width: 100% !important;
+  }
+
+  .toolbar-search-input {
+    width: 100% !important;
+  }
+
+  .order-status-table {
+    display: block !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    white-space: nowrap !important;
+  }
+
+  /* Floating Dock on Mobile */
+  .executive-floating-dock {
+    height: 42px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .dock-bar-inner {
+    padding: 0 8px !important;
+    gap: 6px !important;
+  }
+
+  .dock-controls-left {
+    gap: 3px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .dock-nav-btn {
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 6px !important;
+  }
+
+  .dock-nav-btn svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  .dock-tabs-scroll-area {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+
+  .dock-tab-item {
+    padding: 0 7px !important;
+    font-size: 10px !important;
+    height: 26px !important;
+    gap: 5px !important;
+  }
+
+  .dock-meta-right {
+    display: none !important;
+  }
+
+  .dock-page-badge {
+    display: none !important;
+  }
+
+  .slide-matrix-grid,
+  .shortcuts-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Ultra-Compact Mobile Phones (< 380px)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 380px) {
+  .clean-badge-text {
+    display: none !important;
+  }
+
+  .clean-sync-badge {
+    padding: 6px !important;
+    border-radius: 50% !important;
+  }
+
+  .header-search-box input::placeholder {
+    color: transparent;
+  }
+
+  .dock-tab-label {
+    max-width: 65px;
+  }
+}
