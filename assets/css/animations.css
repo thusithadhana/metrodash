@@ -1,0 +1,672 @@
+/* ==========================================================================
+   METROPOLITAN MANAGEMENT INTELLIGENCE - DASHBOARD WEB APPLICATION
+   Animation Keyframes & Transition Classes
+   ========================================================================== */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulse-gentle {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes breathe-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 180, 216, 0);
+  }
+
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 16px rgba(0, 180, 216, 0.4);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+/* Page / Panel Transition Utilities */
+.animate-fade-in {
+  animation: fadeIn 400ms var(--ease-spring) forwards;
+}
+
+.animate-slide-next {
+  animation: slideInRight 450ms var(--ease-spring) forwards;
+}
+
+.animate-slide-prev {
+  animation: slideInLeft 450ms var(--ease-spring) forwards;
+}
+
+.animate-pulse {
+  animation: pulse-gentle 2s infinite ease-in-out;
+}
+
+.animate-spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+/* Micro-interaction Hover Effects */
+.hover-lift {
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px) scale(1.008);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Staggered Entrance Animation Physics for Cards & Widgets
+   -------------------------------------------------------------------------- */
+@keyframes cardSpringReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+
+  60% {
+    opacity: 0.95;
+    transform: translateY(-2px) scale(1.005);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.panel-container>* {
+  animation: cardSpringReveal 500ms var(--ease-spring) backwards;
+}
+
+.panel-grid-4cards>*:nth-child(1) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 40ms backwards;
+}
+
+.panel-grid-4cards>*:nth-child(2) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 90ms backwards;
+}
+
+.panel-grid-4cards>*:nth-child(3) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 140ms backwards;
+}
+
+.panel-grid-4cards>*:nth-child(4) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 190ms backwards;
+}
+
+.panel-grid-3col>*:nth-child(1) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 50ms backwards;
+}
+
+.panel-grid-3col>*:nth-child(2) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 110ms backwards;
+}
+
+.panel-grid-3col>*:nth-child(3) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 170ms backwards;
+}
+
+.panel-grid-2col>*:nth-child(1) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 60ms backwards;
+}
+
+.panel-grid-2col>*:nth-child(2) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 130ms backwards;
+}
+
+.panel-grid-equal>*:nth-child(1) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 60ms backwards;
+}
+
+.panel-grid-equal>*:nth-child(2) {
+  animation: cardSpringReveal 450ms var(--ease-spring) 130ms backwards;
+}
+
+/* Number Counter Rollup Pulse */
+@keyframes numCounterPulse {
+  0% {
+    filter: drop-shadow(0 0 1px rgba(0, 180, 216, 0.4));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 8px rgba(0, 180, 216, 0.7));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 0 rgba(0, 180, 216, 0));
+  }
+}
+
+.number-animating {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   Dynamic Floating Ambient Orb Keyframes
+   -------------------------------------------------------------------------- */
+@keyframes floatOrb1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, 40px) scale(1.08);
+  }
+  100% {
+    transform: translate(-30px, 70px) scale(0.95);
+  }
+}
+
+@keyframes floatOrb2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-50px, 50px) scale(1.1);
+  }
+  100% {
+    transform: translate(40px, -40px) scale(0.92);
+  }
+}
+
+@keyframes floatOrb3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -60px) scale(1.06);
+  }
+  100% {
+    transform: translate(-50px, -30px) scale(0.96);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SVG Sparkline Draw-In Animation Keyframes
+   -------------------------------------------------------------------------- */
+@keyframes drawSparkline {
+  0% {
+    stroke-dashoffset: 300;
+    opacity: 0.2;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes pulseSparklineBeacon {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0.3;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Live Telemetry Marquee Ticker Keyframes
+   -------------------------------------------------------------------------- */
+@keyframes tickerMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes radar-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tachometer Speedometer & Gauge Needle Animations
+   -------------------------------------------------------------------------- */
+@keyframes gaugeNeedleSweep {
+  0% {
+    transform: rotate(-135deg);
+  }
+  70% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes medalShimmer {
+  0%, 100% {
+    filter: drop-shadow(0 2px 4px rgba(242, 200, 17, 0.3));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 4px 12px rgba(242, 200, 17, 0.7));
+    transform: scale(1.08);
+  }
+}
+
+/* ==========================================================================
+   STATE-OF-THE-ART MODERN WEB ANIMATIONS (ACETERNITY, LINEAR, VERCEL, MAGIC UI)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Aceternity Spotlight Card Radial Glow Follower
+   -------------------------------------------------------------------------- */
+.kpi-card,
+.chart-card,
+.radial-gauge-card,
+.concentric-wheel-card,
+.leaderboard-card,
+.award-card,
+.insight-card {
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  transform-style: preserve-3d;
+}
+
+.kpi-card > *,
+.chart-card > *,
+.radial-gauge-card > *,
+.concentric-wheel-card > *,
+.leaderboard-card > *,
+.award-card > *,
+.insight-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.kpi-card::before,
+.chart-card::before,
+.radial-gauge-card::before,
+.concentric-wheel-card::before,
+.leaderboard-card::before,
+.award-card::before,
+.insight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(0, 180, 216, 0.12),
+    transparent 60%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 1;
+}
+
+[data-theme="dark"] .kpi-card::before,
+[data-theme="dark"] .chart-card::before,
+[data-theme="dark"] .radial-gauge-card::before,
+[data-theme="dark"] .concentric-wheel-card::before,
+[data-theme="dark"] .leaderboard-card::before,
+[data-theme="dark"] .award-card::before,
+[data-theme="dark"] .insight-card::before {
+  background: radial-gradient(
+    500px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(56, 189, 248, 0.18),
+    transparent 60%
+  );
+}
+
+.kpi-card:hover::before,
+.chart-card:hover::before,
+.radial-gauge-card:hover::before,
+.concentric-wheel-card:hover::before,
+.leaderboard-card:hover::before,
+.award-card:hover::before,
+.insight-card:hover::before {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   2. Magic UI "Border Beam" Traveling Laser Ray on VIP Cards
+   -------------------------------------------------------------------------- */
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes border-beam-spin {
+  from {
+    --beam-angle: 0deg;
+  }
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+.has-border-beam {
+  position: relative;
+}
+
+.has-border-beam::after {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    transparent 65deg,
+    #00D2FF 115deg,
+    #0078D4 140deg,
+    transparent 190deg,
+    transparent 260deg,
+    #38BDF8 310deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-beam-spin 4.5s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+[data-theme="dark"] .has-border-beam::after {
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    transparent 65deg,
+    #38BDF8 115deg,
+    #60A5FA 140deg,
+    transparent 190deg,
+    transparent 260deg,
+    #00E5FF 310deg,
+    transparent 360deg
+  );
+}
+
+/* --------------------------------------------------------------------------
+   3. Holographic Iridescent Light Sheen
+   -------------------------------------------------------------------------- */
+@keyframes holo-sheen {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.award-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 215, 0, 0.12) 40%,
+    rgba(56, 189, 248, 0.18) 50%,
+    rgba(255, 215, 0, 0.12) 60%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  animation: holo-sheen 6s infinite ease-in-out;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   4. Dual Concentric Radar Ripple Echo
+   -------------------------------------------------------------------------- */
+@keyframes radar-ripple-wave {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.radar-echo-beacon {
+  position: relative;
+}
+
+.radar-echo-beacon::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  animation: radar-ripple-wave 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  pointer-events: none;
+}
+
+.radar-echo-beacon::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  animation: radar-ripple-wave 2s cubic-bezier(0, 0.2, 0.8, 1) 0.8s infinite;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Supercar Live Engine Idle Tachometer Needle Breathing
+   -------------------------------------------------------------------------- */
+@keyframes needle-idle-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  50% {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+}
+
+.gauge-needle-group {
+  animation: needle-idle-pulse 2.4s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   6. Vercel Magnetic Button Glow Aura
+   -------------------------------------------------------------------------- */
+.magnetic-btn {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.magnetic-btn:hover {
+  box-shadow: 0 0 16px rgba(0, 180, 216, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   7. Apple macOS Dock Spring Proximity Magnification
+   -------------------------------------------------------------------------- */
+.dock-tab-item {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   8. Shimmer Sweep on Progress Fills
+   -------------------------------------------------------------------------- */
+@keyframes high-speed-shimmer {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.bar-fill::after,
+.row-progress-fill::after,
+.kpi-meter-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.65) 50%,
+    transparent 100%
+  );
+  animation: high-speed-shimmer 2.2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .bar-fill::after,
+[data-theme="dark"] .row-progress-fill::after,
+[data-theme="dark"] .kpi-meter-fill::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.85) 50%,
+    transparent 100%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   9. Fluid Ripple Click Micro-interaction
+   -------------------------------------------------------------------------- */
+.modern-fluid-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.45) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+[data-theme="dark"] .modern-fluid-ripple {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.55) 0%, rgba(255, 255, 255, 0.15) 70%, transparent 100%);
+}
