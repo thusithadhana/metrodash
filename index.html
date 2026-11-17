@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#003882">
+  <meta name="description"
+    content="Metropolitan Management Intelligence - Enterprise Performance & Operations Dashboard">
+  <title>Metropolitan Performance Dashboard | Management Intelligence</title>
+
+  <!-- Favicon Emblem -->
+  <link rel="icon" type="image/jpeg" href="assets/images/app_logo.jpg">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- ====================================================================
+         1. INITIAL APP LOADING & TELEMETRY SPLASH SCREEN
+         ==================================================================== -->
+    <div id="splashScreen" class="app-splash-screen">
+      <div class="splash-center-wrap">
+        <div class="splash-emblem-halo">
+          <div class="splash-halo-ring"></div>
+          <div class="splash-emblem-img-wrap">
+            <img src="assets/images/app_logo.jpg" alt="Performance Dashboard Emblem">
+          </div>
+        </div>
+
+        <img src="assets/images/logo_metropolitan.png" alt="Metropolitan Logo" class="splash-company-logo">
+        <h1 class="splash-main-title">METROPOLITAN MANAGEMENT INTELLIGENCE</h1>
+        <p class="splash-sub-title">SMARTBOARD EXECUTIVE TELEMETRY & OPERATIONS COCKPIT</p>
+
+        <div class="splash-progress-container">
+          <div id="splashProgressBar" class="splash-progress-fill" style="width: 10%;"></div>
+        </div>
+
+        <p id="splashStatusText" class="splash-status-text">Initializing Metropolitan MI Engine...</p>
+
+        <button id="splashSkipBtn" class="splash-skip-btn">LAUNCH COCKPIT</button>
+
+        <!-- Architect & Designer Credit on Loading Screen -->
+        <div class="splash-designer-credit">
+          <div class="splash-credit-badge">
+            <svg class="splash-credit-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+            </svg>
+            <span class="splash-credit-label">Designed by Thusitha Dhananjaya - Metropolitan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         2. COLORFUL EXECUTIVE APP LAYOUT (Sidebar + Main Viewport)
+         ==================================================================== -->
+    <div class="colorful-app-layout">
+      <!-- Dark backdrop for mobile sidebar drawer -->
+      <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+      <!-- Left Navigation Sidebar (Slim Electric-Violet Rail matching reference) -->
+      <aside class="colorful-sidebar" id="colorfulSidebar">
+        <!-- 1. Top White Cloud Logo Card -->
+        <div class="sidebar-logo-card" title="Metropolitan Management Intelligence">
+          <svg class="brand-cloud-svg" viewBox="0 0 24 24">
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+          </svg>
+        </div>
+
+        <!-- 2. Centered Navigation Menu Icon Stack -->
+        <div class="sidebar-nav-card">
+          <nav class="sidebar-nav-list">
+            <button class="sidebar-nav-item active" data-page="1" title="Dashboard">
+              <svg class="sidebar-nav-icon" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+              <span>Dashboard</span>
+            </button>
+            <button class="sidebar-nav-item" data-page="2" title="Financial Performance">
+              <svg class="sidebar-nav-icon" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+              <span>Financials</span>
+            </button>
+            <button class="sidebar-nav-item" data-page="3" title="Departments">
+              <svg class="sidebar-nav-icon" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+              <span>Departments</span>
+            </button>
+            <button class="sidebar-nav-item" data-page="4" title="Sales & Revenue">
+              <svg class="sidebar-nav-icon" viewBox="0 0 24 24"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z"/></svg>
+              <span>Sales</span>
+            </button>
+            <button class="sidebar-nav-item" data-page="6" title="Technicians & Teams">
+              <svg class="sidebar-nav-icon" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+              <span>Teams</span>
+            </button>
+            <button class="sidebar-nav-item" data-page="8" title="Debtors & Outstanding">
+              <svg class="sidebar-nav-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+              <span>Debtors</span>
+            </button>
+            <button class="sidebar-nav-item" data-page="9" title="Awards & Recognitions">
+              <svg class="sidebar-nav-icon" viewBox="0 0 24 24"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg>
+              <span>Awards</span>
+            </button>
+            <button class="sidebar-nav-item" id="sidebarBtnSettings" title="Settings & Preferences">
+              <svg class="sidebar-nav-icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+              <span>Settings</span>
+            </button>
+          </nav>
+        </div>
+
+        <!-- 3. Bottom About System Button (No photo in menu) -->
+        <div class="sidebar-bottom-cluster">
+          <button class="sidebar-icon-btn sidebar-about-circle-btn" id="sidebarAboutBtn" data-page="11" title="About System & Architect" aria-label="About System & Architect">
+            <svg class="sidebar-nav-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Right Main Wrapper -->
+      <div class="colorful-main-wrapper">
+        <!-- Top Search & Status Header Bar -->
+        <header class="colorful-top-header">
+          <div class="header-left-group">
+            <button id="btnMobileMenu" class="mobile-menu-toggle-btn" aria-label="Open Navigation Menu" title="Menu">
+              <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+            <h1 id="pageTitleHeading" class="header-main-title">Dashboard</h1>
+          </div>
+
+          <!-- Hidden Page Title Label for compatibility with App.elements -->
+          <span id="pageTitleLabel" style="display: none;">EXECUTIVE OVERVIEW</span>
+
+          <div class="header-controls-cluster">
+            <!-- Date Range Selector Pill matching uploaded image -->
+            <div class="clean-date-badge" title="Telemetry Date Range">
+              <span>10-06-2026 - 10-10-2026</span>
+              <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+
+            <!-- Static Live Sync Badge (NO PULSE) -->
+            <div id="sheetsSyncPill" class="clean-sync-badge" title="Google Sheets Auto-Sync Active (Click for Diagnostics)">
+              <span class="clean-static-dot"></span>
+              <span class="clean-badge-text">LIVE SYNCED</span>
+            </div>
+
+            <!-- Live Clock -->
+            <div class="clean-clock-badge">
+              <span id="liveClockText" class="clock-digit-stream">2026-11-16 10:45:00</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <button id="btnManualSync" class="clean-header-btn" title="Refresh Live Google Sheets (F5)">
+              <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+            </button>
+            <button id="btnSlideGrid" class="clean-header-btn" title="Executive 10-Slide Matrix (G)">
+              <svg viewBox="0 0 24 24"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>
+            </button>
+            <button id="btnToggleTheme" class="clean-header-btn" title="Toggle Light / Dark Theme (T)">
+              <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+            </button>
+            <button id="btnFullscreen" class="clean-header-btn" title="Toggle Fullscreen Mode (F)">
+              <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+            </button>
+            <button id="btnToggleAudio" class="clean-header-btn" style="display: none;" title="Audio (M)"><svg viewBox="0 0 24 24"><path d="M12 4L9.91 6.09 12 8.18V4z"/></svg></button>
+            <button id="btnDiagnostics" class="clean-header-btn" style="display: none;" title="Diagnostics (D)"><svg viewBox="0 0 24 24"><path d="M19 3H5v14h14V3z"/></svg></button>
+            <button id="btnAdminSettings" class="clean-header-btn" style="display: none;" title="Admin (A)"><svg viewBox="0 0 24 24"><path d="M12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></button>
+            <button id="btnShortcutsGuide" class="clean-header-btn" style="display: none;" title="Help (?)"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></button>
+          </div>
+        </header>
+
+        <!-- Main Dashboard Viewport -->
+        <main class="dashboard-viewport">
+          <div id="dashboardViewport" class="panel-container">
+            <!-- Rendered dynamically by DashboardPages.renderCurrent() -->
+          </div>
+        </main>
+
+        <!-- Bottom Floating Dock Navigation -->
+        <footer class="executive-floating-dock">
+          <!-- Slide Progress Fill -->
+          <div class="dock-progress-track">
+            <div id="slideProgressFill" class="dock-progress-fill"></div>
+          </div>
+
+          <div class="dock-bar-inner">
+            <!-- Left: Navigation Controls -->
+            <div class="dock-controls-left">
+              <button id="btnPrevSlide" class="dock-nav-btn" title="Previous Page (Left Arrow)">
+                <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+              </button>
+              <button id="btnPlayPause" class="dock-nav-btn dock-play-btn" title="Play / Pause Auto-Slide (Space)">
+                <svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </button>
+              <button id="btnNextSlide" class="dock-nav-btn" title="Next Page (Right Arrow)">
+                <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+              </button>
+            </div>
+
+            <!-- Center: Modern Horizontal Scrollable Page Tabs -->
+            <div id="paginationPillsContainer" class="dock-tabs-scroll-area">
+              <!-- 10 Modern Page Tabs generated dynamically -->
+            </div>
+
+            <!-- Right: Page Metadata & Sub-panel Dots -->
+            <div class="dock-meta-right">
+              <div id="panelDotsContainer" class="dock-panel-dots-strip"></div>
+              <span id="pageIndexBadge" class="dock-page-badge" title="Click to view 10-Page Matrix (G)">Page 1 of 10</span>
+              <span id="pausedBadge" class="dock-paused-badge" style="display: none;">PAUSED</span>
+            </div>
+          </div>
+        </footer>
+
+      </div> <!-- .colorful-main-wrapper -->
+    </div> <!-- .colorful-app-layout -->
+
+    <!-- ====================================================================
+         5. INTERACTIVE MODAL DIALOGS
+         ==================================================================== -->
+
+    <!-- Modal 1: Synchronisation Diagnostics & Data Health -->
+    <div id="diagnosticsModal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-header-left">
+            <span class="card-heading-icon" style="color: var(--metro-blue); background: rgba(0, 180, 216, 0.12);">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+              </svg>
+            </span>
+            <h2 class="modal-title">TELEMETRY DIAGNOSTICS & DATA HEALTH</h2>
+          </div>
+          <button class="icon-button" data-close-modal title="Close">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="kpi-card kpi-style-gradient-blue">
+            <h4
+              style="font-family: var(--font-accent); font-size: 14px; text-transform: uppercase; color: var(--metro-blue); margin-bottom: 8px;">
+              1. GOOGLE SHEETS LIVE CONNECTOR (14 WORKSHEETS)
+            </h4>
+            <p style="font-family: var(--font-body); font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+              <strong>Status:</strong> Live & Synchronized<br>
+              <strong>Master Spreadsheet:</strong> 1zsZWpR_7K3-IseWDD1x3BRiF8R4Nwv3oD5fnHVN8JWM<br>
+              <strong>Worksheets Loaded:</strong> AMC Pending, Follow-Up Calls, Estimate Pending, Copier Coordinators,
+              Copier Team Leaders, Printer Consumables, Toner Sales, CSBM Projection, CSBM Debtors, Copier Technicians,
+              Daily Invoiced, Daily Estimates.
+            </p>
+          </div>
+          <div class="kpi-card kpi-style-pastel-mint">
+            <h4
+              style="font-family: var(--font-accent); font-size: 14px; text-transform: uppercase; color: #059669; margin-bottom: 8px;">
+              2. COMMERCIAL CONTRACTS & ESTIMATE PIPELINE
+            </h4>
+            <p style="font-family: var(--font-body); font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+              <strong>Status:</strong> Live & Active<br>
+              <strong>Commercial Data Source:</strong> Google Sheets Live Synchronized (Public Read-Only)<br>
+              <strong>AMC Pending Contracts:</strong> LKR 125.4M under active coordinator management<br>
+              <strong>Field Estimates Pipeline:</strong> LKR 32.8M total pipeline value across all regional branches<br>
+              <strong>Daily Billing Output:</strong> LKR 4.5M/day invoicing run-rate verified
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-primary" data-close-modal>CLOSE DIAGNOSTICS</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: Administrator Configuration -->
+    <div id="adminModal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-header-left">
+            <span class="card-heading-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+              </svg>
+            </span>
+            <h2 class="modal-title">ADMINISTRATOR CONFIGURATION & SYSTEM SETTINGS</h2>
+          </div>
+          <button class="icon-button" data-close-modal title="Close">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Google Sheets Live Master URL</label>
+            <input id="adminSheetUrlInput" type="text" class="form-input"
+              value="https://docs.google.com/spreadsheets/d/1zsZWpR_7K3-IseWDD1x3BRiF8R4Nwv3oD5fnHVN8JWM/edit?gid=1091775348#gid=1091775348">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Slide Auto-Rotation Duration (Seconds)</label>
+            <input id="adminSlideDurationInput" type="number" class="form-input" value="60" min="10" max="300">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Background Re-Sync Frequency</label>
+            <select id="adminSyncFreqSelect" class="form-input">
+              <option value="30">Every 30 Seconds</option>
+              <option value="60" selected>Every 1 Minute</option>
+              <option value="300">Every 5 Minutes (Recommended)</option>
+              <option value="900">Every 15 Minutes</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" data-close-modal>CANCEL</button>
+          <button id="btnSaveSheetUrl" class="btn-primary">SAVE & RE-SYNC NOW</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 3: About System & Developer Profile -->
+    <div id="aboutModal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-header-left">
+            <span class="card-heading-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+              </svg>
+            </span>
+            <h2 class="modal-title">ABOUT SYSTEM & DEVELOPER CREDIT</h2>
+          </div>
+          <button class="icon-button" data-close-modal title="Close">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align: center;">
+          <!-- Corporate Logos -->
+          <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 16px;">
+            <div class="app-emblem-box" style="width: 64px; height: 64px;">
+              <img src="assets/images/app_logo.jpg" alt="App Logo" class="app-emblem-img">
+            </div>
+            <img src="assets/images/logo_metropolitan.png" alt="Metropolitan Logo" style="height: 44px;">
+          </div>
+
+          <h2
+            style="font-family: var(--font-heading); font-size: 26px; color: var(--text-primary); margin-bottom: 4px;">
+            METROPOLITAN MANAGEMENT INTELLIGENCE
+          </h2>
+          <p
+            style="font-family: var(--font-accent); font-size: 13px; font-weight: 700; color: var(--metro-cyan); margin-bottom: 24px;">
+            METROPOLITAN TECHNOLOGIES (PVT) LTD
+          </p>
+
+          <hr style="border: none; border-top: 1px solid var(--card-border); margin: 16px 0;">
+
+          <!-- Developer Profile -->
+          <div
+            style="display: flex; align-items: center; justify-content: center; gap: 24px; margin: 16px 0; text-align: left;">
+            <div
+              style="width: 110px; height: 110px; border-radius: 50%; padding: 4px; background: conic-gradient(from 0deg, var(--metro-gold-accent), var(--metro-cyan), var(--metro-blue), var(--metro-gold-accent)); flex-shrink: 0; box-shadow: 0 8px 24px rgba(0, 56, 130, 0.25);">
+              <img src="assets/images/developer_photo.jpg" alt="Thusitha Dhananjaya"
+                style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+            </div>
+            <div>
+              <span
+                style="font-family: var(--font-accent); font-size: 11px; font-weight: 800; color: var(--metro-gold-accent); text-transform: uppercase;">
+                DEVELOPER CREDIT
+              </span>
+              <h3 style="font-family: var(--font-heading); font-size: 28px; color: var(--text-primary); margin: 2px 0;">
+                Thusitha Dhananjaya
+              </h3>
+              <p style="font-family: var(--font-accent); font-size: 14px; font-weight: 700; color: var(--metro-cyan);">
+                Application Developer & Architect
+              </p>
+              <p style="font-family: var(--font-body); font-size: 12px; color: var(--text-secondary);">
+                Metropolitan Technologies (Pvt) Ltd
+              </p>
+            </div>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--card-border); margin: 16px 0;">
+
+          <p
+            style="font-family: var(--font-body); font-size: 13px; color: var(--text-secondary); line-height: 1.6; text-align: left;">
+            <strong>System Overview:</strong> Designed for Boardroom Smartboards, Kiosks, Desktops, Tablets and Mobile
+            devices. Integrates CSBM financial projection velocity, 14 live Google Sheet tabs, real-time service
+            operations, technician turnover leaderboards, employee achievement medallions, and executive strategic
+            alerts.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-primary" data-close-modal>CLOSE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 4: Executive 10-Slide Matrix Grid Switcher -->
+    <div id="slideGridModal" class="modal-overlay">
+      <div class="modal-card modal-card-wide">
+        <div class="modal-header">
+          <div class="modal-header-left">
+            <span class="card-heading-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z" />
+              </svg>
+            </span>
+            <h2 class="modal-title">EXECUTIVE 10-SLIDE NAVIGATION MATRIX</h2>
+          </div>
+          <button class="icon-button" data-close-modal title="Close">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="slide-matrix-grid" id="slideMatrixGridContainer">
+            <!-- 10 page cards generated dynamically by App.renderSlideMatrixGrid() -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-primary" data-close-modal>CLOSE MATRIX</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 5: Executive Keyboard Shortcuts Legend -->
+    <div id="shortcutsModal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-header-left">
+            <span class="card-heading-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm9 7H8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2V8h2v2zm3 3h-2v-2h2v2zm0-3h-2V8h2v2z" />
+              </svg>
+            </span>
+            <h2 class="modal-title">BOARDROOM KEYBOARD SHORTCUTS</h2>
+          </div>
+          <button class="icon-button" data-close-modal title="Close">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="shortcuts-grid">
+            <div class="shortcut-item"><kbd class="hud-key">←</kbd><span>Previous Slide Panel</span></div>
+            <div class="shortcut-item"><kbd class="hud-key">→</kbd><span>Next Slide Panel</span></div>
+            <div class="shortcut-item"><kbd class="hud-key">Space</kbd><span>Pause / Resume 60s Auto-Slide</span></div>
+            <div class="shortcut-item"><kbd class="hud-key">T</kbd><span>Toggle Dark / Light Mode</span></div>
+            <div class="shortcut-item"><kbd class="hud-key">F</kbd><span>Toggle Fullscreen Kiosk Mode</span></div>
+            <div class="shortcut-item"><kbd class="hud-key">G</kbd><span>Open 10-Slide Navigation Matrix</span></div>
+            <div class="shortcut-item"><kbd class="hud-key">M</kbd><span>Toggle Futuristic Audio Haptics</span></div>
+            <div class="shortcut-item"><kbd class="hud-key">D</kbd><span>Telemetry Diagnostics & Sheet Health</span>
+            </div>
+            <div class="shortcut-item"><kbd class="hud-key">A</kbd><span>Admin URL & Duration Config</span></div>
+            <div class="shortcut-item"><kbd class="hud-key">Esc</kbd><span>Close Any Open Modal Window</span></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-primary" data-close-modal>GOT IT</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 6: Executive Record & Metric Detail Inspector -->
+    <div id="recordDetailModal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-header-left">
+            <div class="modal-icon-badge" style="background: rgba(108, 92, 231, 0.15); color: #6C5CE7;">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h1.5v3H12V5zm-2 0h1.5v3H10V5zm-2 0h1.5v3H8V5zm-4 4h16v10H4V9z"/></svg>
+            </div>
+            <div>
+              <h2 id="recordModalTitle" class="modal-title">EXECUTIVE RECORD INSPECTOR</h2>
+              <span id="recordModalSubtitle" class="modal-subtitle">Metropolitan Management Information</span>
+            </div>
+          </div>
+          <button class="icon-button" data-close-modal title="Close">
+            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
+        </div>
+        <div class="modal-body" id="recordModalBody">
+          <!-- Dynamically populated by DashboardPages.openRecordInspector() -->
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11.5px; color: #8C9BAE; font-weight: 600;">Metropolitan Intelligence Platform</span>
+          <button class="btn-primary" data-close-modal>CLOSE INSPECTOR</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Motion.dev Animation Engine (https://motion.dev) -->
+  <script src="assets/js/motion.js"></script>
+  <script src="assets/js/motion-controller.js"></script>
+
+  <!-- Application Logic Modules -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/engines.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/sheets-api.js"></script>
+  <script src="assets/js/pages.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>
